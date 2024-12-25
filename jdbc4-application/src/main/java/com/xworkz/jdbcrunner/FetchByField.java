@@ -1,23 +1,24 @@
 package com.xworkz.jdbcrunner;
 import java.sql.*;
-public class RetriveRunner1 {
+public class FetchByField {
     public static void main(String[] args) {
         Connection connection = null;
         Statement statement = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/Restaurants";
+            String url = "jdbc:mysql://localhost:3306/UI";
             String userName = "root";
             String password = "8296434761";
             connection = DriverManager.getConnection(url, userName, password);
             statement = connection.createStatement();
-            String query = "Select * from Restaurants_Info";
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
-                int Restaurants_Id = resultSet.getInt(1);
-                String Restaurants_Name = resultSet.getString(2);
-                String Restaurants_Address = resultSet.getString(3);
-                System.out.println("Restaurants_Id :"+Restaurants_Id+"Restaurants_Name :"+Restaurants_Name+"Restaurants_Address"+Restaurants_Address);
+            String findById = "Select * from UI_Info where Language_Name = kannada";
+            ResultSet resultSet =statement.executeQuery(findById);
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String LanguageName = resultSet.getString(2);
+                String TheatreName = resultSet.getString(3);
+                System.out.println(id+" "+LanguageName+" "+TheatreName+" ");
+
             }
 
         }catch (ClassNotFoundException | SQLException e){
@@ -35,7 +36,7 @@ public class RetriveRunner1 {
                 System.out.println(e.getMessage());
             }
         }
+
     }
 }
-
 

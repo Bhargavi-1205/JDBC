@@ -1,23 +1,24 @@
 package com.xworkz.jdbcrunner;
 import java.sql.*;
-public class RetriveRunner1 {
+public class USARunner3 {
     public static void main(String[] args) {
         Connection connection = null;
         Statement statement = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/Restaurants";
+            String url = "jdbc:mysql://localhost:3306/USA";
             String userName = "root";
             String password = "8296434761";
             connection = DriverManager.getConnection(url, userName, password);
             statement = connection.createStatement();
-            String query = "Select * from Restaurants_Info";
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
-                int Restaurants_Id = resultSet.getInt(1);
-                String Restaurants_Name = resultSet.getString(2);
-                String Restaurants_Address = resultSet.getString(3);
-                System.out.println("Restaurants_Id :"+Restaurants_Id+"Restaurants_Name :"+Restaurants_Name+"Restaurants_Address"+Restaurants_Address);
+            String findById = "Select * from USA_Info where Food_Cost = 600";
+            ResultSet resultSet =statement.executeQuery(findById);
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String USAName = resultSet.getString(2);
+                String USAAddress = resultSet.getString(3);
+                System.out.println(id+" "+USAName+" "+USAAddress+" ");
+
             }
 
         }catch (ClassNotFoundException | SQLException e){
@@ -37,5 +38,12 @@ public class RetriveRunner1 {
         }
     }
 }
+
+
+
+
+
+
+
 
 
